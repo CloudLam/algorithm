@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SORT TEST</title>
+</head>
+<style type="text/css">
+body {
+    line-height: 1.0rem;
+    font: 1.0rem helvetica neue, helvetica, pingfang sc, \5fae\8f6f\96c5\9ed1, tahoma, arial, sans-serif;
+    background: #f7f7f7;
+}
+
+.box {
+    display: -webkit-flex;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-start;
+}
+
+.item {
+    width: 500px;
+    margin: 5px;
+    padding: 10px;
+    order: 0;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    flex: 0 1 auto;
+    align-self: auto;
+    position: relative;
+}
+
+.item label {
+    color: #636768;
+    font-size: 24px;
+}
+
+.card {
+    height: 60px;
+    background-color: #ffffff;
+    box-shadow: 1px 1px 1px #c7c7c7;
+    border-radius: 5px;
+}
+
+.card label {
+    color: #5DE0F1;
+    font-size: 24px;
+}
+
+.card span {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+</style>
+<body>
+    <div class="box">
+        <div class="item">
+            <label>Test Sample</label>
+        </div>
+        <div id="source" class="item card">
+            <label>Source</label>
+            <span id="source-array"></span>
+        </div>
+        <div id="result" class="item card">
+            <label>Result</label>
+            <span id="result-array"></span>
+        </div>
+        <div class="item">
+            <label>Time Costs (with 10240 size array)</label>
+        </div>
+        <div id="bubble-sort" class="item card">
+            <label>Bubble Sort</label>
+            <span id="bubble-sort-time"></span>
+        </div>
+        <div id="insert-sort" class="item card">
+            <label>Insert Sort</label>
+            <span id="insert-sort-time"></span>
+        </div>
+        <div id="shell-sort" class="item card">
+            <label>Shell Sort</label>
+            <span id="shell-sort-time"></span>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../src/sort.js"></script>
+<script type="text/javascript">
+// Test how long function run
+function functionTime (fn, args) {
+    var start = new Date().getTime();
+    if (fn) {
+        fn(args);
+    }
+    var end = new Date().getTime();
+    return end - start;
+}
+
+// Source array
+var source = [89, 64, 18, 37, 95, 73, 25, 56, 43, 100];
+var result = source.concat();
+bubbleSort(result);
+document.getElementById('source-array').innerText = source;
+document.getElementById('result-array').innerText = result;
+
+// Generate array
+var array = [];
+for (var i = 0; i < 10240; i++) {
+    array.push(Math.round(Math.random() * 100000));
+}
+
+// Bubble Sort
+var bubbleArray = array.concat();
+document.getElementById('bubble-sort-time').innerText = functionTime(bubbleSort, bubbleArray) + ' ms';
+
+// Insert Sort
+var insertArray = array.concat();
+document.getElementById('insert-sort-time').innerText = functionTime(insertSort, insertArray) + ' ms';
+
+// Shell Sort
+var shellArray = array.concat();
+document.getElementById('shell-sort-time').innerText = functionTime(shellSort, shellArray) + ' ms';
+</script>
+</html>

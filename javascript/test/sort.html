@@ -95,6 +95,10 @@ body {
       <label>Quick Sort</label>
       <span id="quick-sort-time"></span>
     </div>
+    <div id="merge-sort" class="item card">
+      <label>Merge Sort</label>
+      <span id="merge-sort-time"></span>
+    </div>
   </div>
 </body>
 <script type="text/javascript" src="../src/sort.js"></script>
@@ -145,5 +149,9 @@ document.getElementById('heap-sort-time').innerText = functionTime(heapSort, hea
 // Quick Sort
 var quickArray = array.concat();
 document.getElementById('quick-sort-time').innerText = functionTime(quickSort, quickArray, 0, quickArray.length - 1) + ' ms';
+
+// Merge Sort
+var mergeArray = array.concat();
+document.getElementById('merge-sort-time').innerText = functionTime(mergeSort, mergeArray, 0, mergeArray.length - 1) + ' ms';
 </script>
 </html>

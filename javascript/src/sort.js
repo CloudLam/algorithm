@@ -137,3 +137,38 @@ function quickSort (array, left, right) {
     quickSort(array, low + 1, right);
   }
 }
+
+// Merge Sort
+/**
+ * Merge array
+ * 
+ * @param array
+ * @param pos
+ * @param left
+ * @param right
+ */
+function merge(array, pos, left, right) {
+  var temp = [];
+  while (left.length && right.length) {
+    if (left[0] < right[0]) {
+      temp.push(left.shift());
+    } else {
+      temp.push(right.shift());
+    }
+  }
+  // merge
+  temp = temp.concat(left, right);
+  // Update array with the sorted subarray 
+  for (var i = 0; i < temp.length; i++) {
+    array[pos + i] = temp[i];
+  }
+}
+
+function mergeSort(array, left, right) {
+  if(left < right) {
+    var mid = parseInt(left + (right - left) / 2);
+    mergeSort(array, left, mid);
+    mergeSort(array, mid + 1, right);
+    merge(array, left, array.slice(left, mid + 1), array.slice(mid + 1, right + 1));
+  }
+}

@@ -15,6 +15,7 @@ function bubbleSort (array) {
       }
     }
   }
+  return array;
 }
 
 // Insert Sort
@@ -28,6 +29,7 @@ function insertSort (array) {
       }
     }
   }
+  return array;
 }
 
 // Shell Sort
@@ -44,6 +46,7 @@ function shellSort (array) {
       }
     }
   }
+  return array;
 }
 
 // Select Sort
@@ -74,6 +77,7 @@ function selectSort (array) {
       array[max] = temp;
     }
   }
+  return array;
 }
 
 // Heap Sort
@@ -114,6 +118,7 @@ function heapSort (array) {
     array[0] = temp;
     heapAdjust(array, 0, j);
   }
+  return array;
 }
 
 // Quick Sort
@@ -136,18 +141,17 @@ function quickSort (array, left, right) {
     quickSort(array, left, low - 1);
     quickSort(array, low + 1, right);
   }
+  return array;
 }
 
 // Merge Sort
 /**
  * Merge array
  * 
- * @param array
- * @param pos
  * @param left
  * @param right
  */
-function merge(array, pos, left, right) {
+function merge(left, right) {
   var temp = [];
   while (left.length && right.length) {
     if (left[0] < right[0]) {
@@ -156,19 +160,15 @@ function merge(array, pos, left, right) {
       temp.push(right.shift());
     }
   }
-  // merge
-  temp = temp.concat(left, right);
-  // Update array with the sorted subarray 
-  for (var i = 0; i < temp.length; i++) {
-    array[pos + i] = temp[i];
-  }
+  return temp.concat(left, right);
 }
 
-function mergeSort(array, left, right) {
-  if(left < right) {
-    var mid = parseInt(left + (right - left) / 2);
-    mergeSort(array, left, mid);
-    mergeSort(array, mid + 1, right);
-    merge(array, left, array.slice(left, mid + 1), array.slice(mid + 1, right + 1));
+function mergeSort(array) {
+  if (array.length == 1) {
+    return array;
   }
+  var middle = parseInt(array.length / 2);
+  var left = array.slice(0, middle);
+  var right = array.slice(middle);
+  return merge(mergeSort(left), mergeSort(right));
 }

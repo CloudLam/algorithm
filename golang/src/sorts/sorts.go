@@ -1,10 +1,8 @@
 // Copyright 2018 Cloud Lam. All rights reserved
 
-package main
+package sorts
 
-import "fmt"
-
-func bubbleSort(array []int) {
+func BubbleSort(array []int) {
 	var temp int
 	for i := 1; i < len(array); i++ {
 		for j := 0; j < len(array)-i; j++ {
@@ -15,11 +13,4 @@ func bubbleSort(array []int) {
 			}
 		}
 	}
-}
-
-func main() {
-	array := []int{89, 64, 18, 37, 95, 73, 25, 56, 43, 100}
-	fmt.Println(array)
-	bubbleSort(array)
-	fmt.Println(array)
 }

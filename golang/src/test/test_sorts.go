@@ -14,6 +14,7 @@ func SortTimes() {
 	SortTime("Bubble")
 	SortTime("Insert")
 	SortTime("Shell")
+	SortTime("Select")
 }
 
 // SortTime prints sort method time cost
@@ -32,6 +33,8 @@ func SortTime(method string) {
 		sorts.InsertSort(array)
 	case "Shell":
 		sorts.ShellSort(array)
+	case "Select":
+		sorts.SelectSort(array)
 	default:
 	}
 	// Cost time
@@ -60,5 +63,13 @@ func ShellSortTest() {
 	array := []int{89, 64, 18, 37, 95, 73, 25, 56, 43, 100}
 	fmt.Println("Source: ", array)
 	sorts.ShellSort(array)
+	fmt.Println("Result: ", array)
+}
+
+// SelectSortTest tests SelectSort
+func SelectSortTest() {
+	array := []int{89, 64, 18, 37, 95, 73, 25, 56, 43, 100}
+	fmt.Println("Source: ", array)
+	sorts.SelectSort(array)
 	fmt.Println("Result: ", array)
 }

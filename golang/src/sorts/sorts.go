@@ -46,3 +46,33 @@ func ShellSort(array []int) {
 		}
 	}
 }
+
+// SelectSort sorts array with Select Sort Method
+func SelectSort(array []int) {
+	var max, min, temp int
+	for i := 0; i < len(array)/2; i++ {
+		max = i
+		min = i
+		for j := i + 1; j < len(array)-i; j++ {
+			if array[j] > array[max] {
+				max = j
+				continue
+			}
+			if array[j] < array[min] {
+				min = j
+			}
+		}
+		// Minimum
+		if min != i {
+			temp = array[i]
+			array[i] = array[min]
+			array[min] = temp
+		}
+		// Maximum
+		if max != i {
+			temp = array[len(array)-i-1]
+			array[len(array)-i-1] = array[max]
+			array[max] = temp
+		}
+	}
+}

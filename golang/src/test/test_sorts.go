@@ -9,19 +9,24 @@ import (
 	"time"
 )
 
+// SIZE is the array length
+var SIZE = 10240
+
 // SortTimes prints all sort method time cost
 func SortTimes() {
+	fmt.Println("The length of array: ", SIZE)
 	SortTime("Bubble")
 	SortTime("Insert")
 	SortTime("Shell")
 	SortTime("Select")
+	SortTime("Heap")
 }
 
 // SortTime prints sort method time cost
 func SortTime(method string) {
 	// Build array
 	array := []int{}
-	for index := 0; index < 10240; index++ {
+	for index := 0; index < SIZE; index++ {
 		array = append(array, rand.Intn(100000))
 	}
 	// Begin time
@@ -35,6 +40,8 @@ func SortTime(method string) {
 		sorts.ShellSort(array)
 	case "Select":
 		sorts.SelectSort(array)
+	case "Heap":
+		sorts.HeapSort(array)
 	default:
 	}
 	// Cost time
@@ -71,5 +78,13 @@ func SelectSortTest() {
 	array := []int{89, 64, 18, 37, 95, 73, 25, 56, 43, 100}
 	fmt.Println("Source: ", array)
 	sorts.SelectSort(array)
+	fmt.Println("Result: ", array)
+}
+
+// HeapSortTest tests HeapSort
+func HeapSortTest() {
+	array := []int{89, 64, 18, 37, 95, 73, 25, 56, 43, 100}
+	fmt.Println("Source: ", array)
+	sorts.HeapSort(array)
 	fmt.Println("Result: ", array)
 }

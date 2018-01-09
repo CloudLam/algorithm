@@ -76,3 +76,38 @@ func SelectSort(array []int) {
 		}
 	}
 }
+
+// HeapAdjust adjust array
+// The array must conform to a heap except array[pos],
+// adjust array[pos] to make sure array[i] >= array[2i+1] && array[i] >= array[2i+2].
+func HeapAdjust(array []int, pos int, length int) {
+	var temp = array[pos]
+	for i := pos*2 + 1; i < length; i = i*2 + 1 {
+		if i+1 < length && array[i] < array[i+1] {
+			i++
+		}
+		if array[i] > temp {
+			array[pos] = array[i]
+			pos = i
+		} else {
+			break
+		}
+		array[i] = temp
+	}
+}
+
+// HeapSort sorts array with Heap Sort Method
+func HeapSort(array []int) {
+	var temp int
+	// Build heap
+	for i := len(array)/2 - 1; i >= 0; i-- {
+		HeapAdjust(array, i, len(array))
+	}
+	// Sort
+	for j := len(array) - 1; j > 0; j-- {
+		temp = array[j]
+		array[j] = array[0]
+		array[0] = temp
+		HeapAdjust(array, 0, j)
+	}
+}

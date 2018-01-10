@@ -20,6 +20,7 @@ func SortTimes() {
 	SortTime("Shell")
 	SortTime("Select")
 	SortTime("Heap")
+	SortTime("Quick")
 }
 
 // SortTime prints sort method time cost
@@ -42,6 +43,8 @@ func SortTime(method string) {
 		sorts.SelectSort(array)
 	case "Heap":
 		sorts.HeapSort(array)
+	case "Quick":
+		sorts.QuickSort(array, 0, SIZE-1)
 	default:
 	}
 	// Cost time
@@ -86,5 +89,13 @@ func HeapSortTest() {
 	array := []int{89, 64, 18, 37, 95, 73, 25, 56, 43, 100}
 	fmt.Println("Source: ", array)
 	sorts.HeapSort(array)
+	fmt.Println("Result: ", array)
+}
+
+// QuickSortTest tests QuickSort
+func QuickSortTest() {
+	array := []int{89, 64, 18, 37, 95, 73, 25, 56, 43, 100}
+	fmt.Println("Source: ", array)
+	sorts.QuickSort(array, 0, len(array)-1)
 	fmt.Println("Result: ", array)
 }

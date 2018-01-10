@@ -111,3 +111,26 @@ func HeapSort(array []int) {
 		HeapAdjust(array, 0, j)
 	}
 }
+
+// QuickSort sorts array with Quick Sort Method
+func QuickSort(array []int, left int, right int) {
+	if left < right {
+		var pivot = array[left]
+		var low = left
+		var high = right
+
+		for low < high {
+			for low < high && array[high] >= pivot {
+				high--
+			}
+			array[low] = array[high]
+			for low < high && array[low] <= pivot {
+				low++
+			}
+			array[high] = array[low]
+		}
+		array[low] = pivot
+		QuickSort(array, left, low-1)
+		QuickSort(array, low+1, right)
+	}
+}

@@ -71,6 +71,9 @@ function selectSort (array) {
       array[min] = temp;
     }
     // Maximum
+    if (max == i) {
+      max = min
+    }
     if (max != i) {
       temp = array[array.length - i - 1];
       array[array.length - i - 1] = array[max];

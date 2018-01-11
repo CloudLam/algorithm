@@ -21,6 +21,7 @@ func SortTimes() {
 	SortTime("Select")
 	SortTime("Heap")
 	SortTime("Quick")
+	SortTime("Merge")
 }
 
 // SortTime prints sort method time cost
@@ -45,6 +46,8 @@ func SortTime(method string) {
 		sorts.HeapSort(array)
 	case "Quick":
 		sorts.QuickSort(array, 0, SIZE-1)
+	case "Merge":
+		sorts.MergeSort(array)
 	default:
 	}
 	// Cost time
@@ -56,46 +59,47 @@ func SortTime(method string) {
 func BubbleSortTest() {
 	array := []int{89, 64, 18, 37, 95, 73, 25, 56, 43, 100}
 	fmt.Println("Source: ", array)
-	sorts.BubbleSort(array)
-	fmt.Println("Result: ", array)
+	fmt.Println("Result: ", sorts.BubbleSort(array))
 }
 
 // InsertSortTest tests InsertSort
 func InsertSortTest() {
 	array := []int{89, 64, 18, 37, 95, 73, 25, 56, 43, 100}
 	fmt.Println("Source: ", array)
-	sorts.InsertSort(array)
-	fmt.Println("Result: ", array)
+	fmt.Println("Result: ", sorts.InsertSort(array))
 }
 
 // ShellSortTest tests ShellSort
 func ShellSortTest() {
 	array := []int{89, 64, 18, 37, 95, 73, 25, 56, 43, 100}
 	fmt.Println("Source: ", array)
-	sorts.ShellSort(array)
-	fmt.Println("Result: ", array)
+	fmt.Println("Result: ", sorts.ShellSort(array))
 }
 
 // SelectSortTest tests SelectSort
 func SelectSortTest() {
 	array := []int{89, 64, 18, 37, 95, 73, 25, 56, 43, 100}
 	fmt.Println("Source: ", array)
-	sorts.SelectSort(array)
-	fmt.Println("Result: ", array)
+	fmt.Println("Result: ", sorts.SelectSort(array))
 }
 
 // HeapSortTest tests HeapSort
 func HeapSortTest() {
 	array := []int{89, 64, 18, 37, 95, 73, 25, 56, 43, 100}
 	fmt.Println("Source: ", array)
-	sorts.HeapSort(array)
-	fmt.Println("Result: ", array)
+	fmt.Println("Result: ", sorts.HeapSort(array))
 }
 
 // QuickSortTest tests QuickSort
 func QuickSortTest() {
 	array := []int{89, 64, 18, 37, 95, 73, 25, 56, 43, 100}
 	fmt.Println("Source: ", array)
-	sorts.QuickSort(array, 0, len(array)-1)
-	fmt.Println("Result: ", array)
+	fmt.Println("Result: ", sorts.QuickSort(array, 0, len(array)-1))
+}
+
+// MergeSortTest tests MergeSort
+func MergeSortTest() {
+	array := []int{89, 64, 18, 37, 95, 73, 25, 56, 43, 100}
+	fmt.Println("Source: ", array)
+	fmt.Println("Result: ", sorts.MergeSort(array))
 }

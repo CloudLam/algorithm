@@ -21,6 +21,32 @@ class BinaryTree {
       });
     }
   }
+  search (value) {
+    let current = this.root;
+    while (current != null) {
+      if (current.value == value) {
+        return current;
+      }
+      if (current.value > value) {
+        current = current.left;
+      } else {
+        current = current.right;
+      }
+    }
+    return null;
+  }
+  getMax (node = this.root) {
+    if (node.right == null) {
+      return node;
+    }
+    return this.getMax(node.right);
+  }
+  getMin (node = this.root) {
+    if (node.left == null) {
+      return node;
+    }
+    return this.getMin(node.left);
+  }
   insert (value) {
     let node = new Node(value);
     if (this.root === null) {
@@ -28,7 +54,7 @@ class BinaryTree {
     } else {
       insertNode(this.root, node);
     }
-    function insertNode(node, newNode) {
+    function insertNode (node, newNode) {
       if (newNode.value < node.value) {
         if (node.left === null) {
           node.left = newNode;
@@ -41,6 +67,38 @@ class BinaryTree {
         } else {
           insertNode(node.right, newNode);
         }
+      }
+    }
+  }
+  remove (value) {
+    let _this = this;
+    this.root = removeNode(this.root, value);
+    function removeNode (node, value) {
+      if (node == null) {
+        return null;
+      }
+      if (node.value == value) {
+        if (node.left == null && node.right == null) {
+          return null;
+        }
+        if (node.left == null) {
+          return node.right;
+        }
+        if (node.right == null) {
+          return node.left;
+        }
+        var temp = _this.getMin(node.right);
+        node.value = temp.value;
+        node.right = removeNode(node.right, temp.value);
+        return node;
+      }
+      if (node.value > value) {
+        node.left = removeNode(node.left, value);
+        return node;
+      }
+      if (node.value < value) {
+        node.right = removeNode(node.right, value);
+        return node;
       }
     }
   }
@@ -78,14 +136,14 @@ class BinaryTree {
   }
   postOrder () {
     let result = [];
-    inOrderTraversal(this.root);
+    postOrderTraversal(this.root);
     return result;
-    function inOrderTraversal (node) {
+    function postOrderTraversal (node) {
       if (node.left) {
-        inOrderTraversal(node.left);
+        postOrderTraversal(node.left);
       }
       if (node.right) {
-        inOrderTraversal(node.right);
+        postOrderTraversal(node.right);
       }
       if (node) {
         result.push(node.value);

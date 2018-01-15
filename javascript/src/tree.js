@@ -12,7 +12,7 @@ class Node {
   }
 }
 
-class BinaryTree {
+class BinarySearchTree {
   constructor (data) {
     this.root = null;
     if (data) {

@@ -10,16 +10,19 @@ type BinarySearchTree struct {
 	right *BinarySearchTree
 }
 
-// NewBinarySearchTree is the constructor of BinarySearchTree
-func NewBinarySearchTree(data []int) *BinarySearchTree {
-	if len(data) == 0 {
-		return &BinarySearchTree{}
+func (bst *BinarySearchTree) search(value int) *BinarySearchTree {
+	current := bst
+	for current != nil {
+		if current.value == value {
+			return current
+		}
+		if current.value > value {
+			current = current.left
+		} else {
+			current = current.right
+		}
 	}
-	bst := &BinarySearchTree{data[0], nil, nil}
-	for i := 1; i < len(data); i++ {
-		bst.insert(data[i])
-	}
-	return bst
+	return nil
 }
 
 func (bst *BinarySearchTree) insert(value int) *BinarySearchTree {
@@ -30,6 +33,18 @@ func (bst *BinarySearchTree) insert(value int) *BinarySearchTree {
 		bst.left = bst.left.insert(value)
 	} else {
 		bst.right = bst.right.insert(value)
+	}
+	return bst
+}
+
+// NewBinarySearchTree is the constructor of BinarySearchTree
+func NewBinarySearchTree(data []int) *BinarySearchTree {
+	if len(data) == 0 {
+		return &BinarySearchTree{}
+	}
+	bst := &BinarySearchTree{data[0], nil, nil}
+	for i := 1; i < len(data); i++ {
+		bst.insert(data[i])
 	}
 	return bst
 }

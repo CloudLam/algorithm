@@ -56,7 +56,7 @@ func (bst *BinarySearchTree) Insert(value int) {
 
 // Remove deletes value from the Binary-Search-Tree
 func (bst *BinarySearchTree) Remove(value int) {
-	bst.Root = bst.Root.remove(value)
+	bst.Root.remove(value)
 }
 
 // PreOrder returns Preorder Traversal of the Binary-Search-Tree

@@ -29,8 +29,43 @@ func (node *Node) insert(value int) {
 	}
 }
 
-func (node *Node) remove(value int) *Node {
-	return nil
+func (node *Node) remove(value int) {
+	if node == nil {
+		return
+	}
+	if node.Value == value {
+		if node.Left == nil && node.Right == nil {
+			*node = Node{-1, nil, nil}
+			return
+		}
+		if node.Left == nil {
+			*node = Node{node.Right.Value, node.Right.Left, node.Right.Right}
+			return
+		}
+		if node.Right == nil {
+			*node = Node{node.Left.Value, node.Left.Left, node.Left.Right}
+			return
+		}
+		temp := node.Right
+		for temp.Left != nil {
+			temp = temp.Left
+		}
+		*node = Node{temp.Value, node.Left, node.Right}
+		node.Right.remove(temp.Value)
+		return
+	}
+	if node.Value > value {
+		node.Left.remove(value)
+		if node.Left.Value == -1 {
+			node.Left = nil
+		}
+	}
+	if node.Value < value {
+		node.Right.remove(value)
+		if node.Right.Value == -1 {
+			node.Right = nil
+		}
+	}
 }
 
 func (node *Node) preOrder(result *[]int) {

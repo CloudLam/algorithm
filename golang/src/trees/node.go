@@ -29,7 +29,9 @@ func (node *Node) insert(value int) {
 	}
 }
 
-func (node *Node) remove(value int) {}
+func (node *Node) remove(value int) *Node {
+	return nil
+}
 
 func (node *Node) preOrder(result *[]int) {
 	if node != nil {

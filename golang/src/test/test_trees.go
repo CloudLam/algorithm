@@ -16,4 +16,6 @@ func BinarySearchTreeTest() {
 	fmt.Println("Postorder Traversal: ", bst.PostOrder())
 	fmt.Println("Minimum: ", bst.GetMin())
 	fmt.Println("Maximum: ", bst.GetMax())
+	bst.Remove(10)
+	fmt.Println(bst.InOrder())
 }

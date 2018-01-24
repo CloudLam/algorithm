@@ -7,8 +7,11 @@
 </style>
 <body>
 </body>
-<script type="text/javascript" src="../src/Subsequence.js"></script>
+<script type="text/javascript" src="../src/subseq.js"></script>
 <script type="text/javascript">
-console.log(LCS('lcs', 'longest-common-subsequence'));
+result = LCS('lcs', 'longest-common-subsequence');
+console.log(result);
+var re = new RegExp(result.lcs.split('').join('.*'));
+console.log(re + ', ' + String(re.test('lcs') && re.test('longest-common-subsequence')));
 </script>
 </html>

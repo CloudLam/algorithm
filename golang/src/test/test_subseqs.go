@@ -9,5 +9,6 @@ import (
 
 // LCSTest tests Longest Common Subsequence
 func LCSTest() {
-	fmt.Println(subseqs.LCS("lcs", "longest-common-subsequence"))
+	len, lcs := subseqs.LCS("lcs", "longest-common-subsequence")
+	fmt.Println(len, lcs)
 }

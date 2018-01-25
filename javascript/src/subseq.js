@@ -11,7 +11,7 @@
  * @param y
  * @return {len, lcs}
  */
-function LCS (x, y) {
+function LCSeq (x, y) {
   if (x.length == 0 || y.length == 0) {
     return {len: 0, lcs: ''};
   }
@@ -43,4 +43,41 @@ function LCS (x, y) {
     }
   }
   return {len: dp[x.length][y.length], lcs: lcs};
+}
+
+ /**
+ * Longest Common Substring
+ * 
+ * @param x
+ * @param y
+ * @return {len, lcs}
+ */
+function LCStr (x, y) {
+  if (x.length == 0 || y.length == 0) {
+    return {len: 0, lcs: ''};
+  }
+  var dp = [new Array(y.length + 1).fill(0)];
+  var len = 0;
+  var lcs = '';
+  for (var i = 1; i <= x.length + 1; i++) {
+    dp[i] = [0];
+    for (var j = 1; j <= y.length; j++) {
+      if (x[i-1] == y[j-1]) {
+        dp[i][j] = dp[i-1][j-1] + 1;
+        if (dp[i][j] > len) {
+          // Length of LCS
+          len = dp[i][j];
+          // Substring of LCS
+          lcs = '';
+          for (var k = len; k > 0; k--) {
+            console.log(y[j-k]);
+            lcs += y[j-k];
+          }
+        }
+      } else {
+        dp[i][j] = 0;
+      }
+    }
+  }
+  return {len: len, lcs: lcs};
 }

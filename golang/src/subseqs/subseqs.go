@@ -3,8 +3,8 @@
 
 package subseqs
 
-// LCS returns Longest Common Subsequence
-func LCS(x, y string) (int, string) {
+// LCSeq returns Longest Common Subsequence: length & 1 of LCS
+func LCSeq(x, y string) (int, string) {
 	if len(x) == 0 || len(y) == 0 {
 		return 0, ""
 	}
@@ -47,4 +47,39 @@ func LCS(x, y string) (int, string) {
 		}
 	}
 	return dp[len(x)][len(y)], lcs
+}
+
+// LCStr returns Longest Common Substring: length & 1 of LCS
+func LCStr(x, y string) (int, string) {
+	if len(x) == 0 || len(y) == 0 {
+		return 0, ""
+	}
+	length := 0
+	lcs := ""
+	var dp [][]int
+	for i := 0; i <= len(x); i++ {
+		var temp []int
+		for j := 0; j <= len(y); j++ {
+			if i == 0 || j == 0 {
+				temp = append(temp, 0)
+				continue
+			}
+			if x[i-1] == y[j-1] {
+				temp = append(temp, dp[i-1][j-1]+1)
+				if temp[j] > length {
+					// Length of LCS
+					length = temp[j]
+					// Substring of LCS
+					lcs = ""
+					for k := length; k > 0; k-- {
+						lcs += string(y[j-k])
+					}
+				}
+			} else {
+				temp = append(temp, 0)
+			}
+		}
+		dp = append(dp, temp)
+	}
+	return length, lcs
 }

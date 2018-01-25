@@ -9,9 +9,18 @@
 </body>
 <script type="text/javascript" src="../src/subseq.js"></script>
 <script type="text/javascript">
-result = LCS('lcs', 'longest-common-subsequence');
-console.log(result);
-var re = new RegExp(result.lcs.split('').join('.*'));
-console.log(re + ', ' + String(re.test('lcs') && re.test('longest-common-subsequence')));
+var x = 'lcs';
+var y = 'longest-common-subsequence';
+var z = 'longest-common-substring'
+
+var lcs_seq = LCSeq(x, y);
+console.log(lcs_seq);
+var re_seq = new RegExp(lcs_seq.lcs.split('').join('.*'));
+console.log(re_seq + ', ' + String(re_seq.test(x) && re_seq.test(y)));
+
+var lcs_str = LCStr(x, z);
+console.log(lcs_str);
+var re_str = new RegExp(lcs_str.lcs + '.*');
+console.log(re_str + ', ' + String(re_str.test(x) && re_str.test(z)));
 </script>
 </html>

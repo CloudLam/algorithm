@@ -83,3 +83,8 @@ func LCStr(x, y string) (int, string) {
 	}
 	return length, lcs
 }
+
+// LIS returns Longest Increasing Subsequence
+func LIS(x string) (int, string) {
+	return 0, ""
+}

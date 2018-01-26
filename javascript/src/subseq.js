@@ -81,3 +81,13 @@ function LCStr (x, y) {
   }
   return {len: len, lcs: lcs};
 }
+
+ /**
+ * Longest Increasing Subsequence
+ * 
+ * @param x
+ * @return {len, lis}
+ */
+function LIS (x) {
+  return {len: 0, lis: ''};
+}

@@ -84,7 +84,39 @@ func LCStr(x, y string) (int, string) {
 	return length, lcs
 }
 
-// LIS returns Longest Increasing Subsequence
-func LIS(x string) (int, string) {
+// LISeq returns Longest Increasing Subsequence: length & 1 of LIS
+func LISeq(x string) (int, string) {
 	return 0, ""
+}
+
+// LIStr returns Longest Increasing Substring: length & 1 of LIS
+func LIStr(x string) (int, string) {
+	if len(x) == 0 {
+		return 0, ""
+	}
+	length := 1
+	lis := ""
+	var dp []int
+	// Length of LIS
+	dp = append(dp, 1)
+	for i := 1; i < len(x); i++ {
+		if x[i] > x[i-1] {
+			dp = append(dp, dp[i-1]+1)
+		} else {
+			dp = append(dp, 1)
+		}
+		if dp[i] > length {
+			length = dp[i]
+		}
+	}
+	// Substring of LIS
+	for i := 0; i < len(dp); i++ {
+		if dp[i] == length {
+			for j := length - 1; j >= 0; j-- {
+				lis += string(x[i-j])
+			}
+			break
+		}
+	}
+	return length, lis
 }

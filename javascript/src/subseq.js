@@ -88,6 +88,41 @@ function LCStr (x, y) {
  * @param x
  * @return {len, lis}
  */
-function LIS (x) {
-  return {len: 0, lis: ''};
+function LISeq (x) {}
+
+ /**
+ * Longest Increasing Substring
+ * 
+ * @param x
+ * @return {len, lis}
+ */
+function LIStr (x) {
+  if (x.length == 0) {
+    return {len: 0, lis: ''};
+  }
+  var len = 1;
+  var lis = '';
+  var dp = new Array(x.length);
+  // Length of LIS
+  dp[0] = 1;
+  for (var i = 1; i < x.length; i++) {
+    if (x[i] > x[i-1]) {
+      dp[i] = dp[i-1] + 1;
+    } else {
+      dp[i] = 1;
+    }
+    if (dp[i] > len) {
+      len = dp[i];
+    }
+  }
+  // Substring of LIS
+  for (var i = 0; i < dp.length; i++) {
+    if (dp[i] == len) {
+      for (var j = len - 1; j >= 0; j--) {
+        lis += x[i-j];
+      }
+      break;
+    }
+  }
+  return {len: len, lis: lis};
 }

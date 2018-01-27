@@ -48,3 +48,12 @@ func LCStrTest() {
 
 	fmt.Println("    RE:", re, "    Test:", matchX && matchY)
 }
+
+// LIStrTest tests Longest Increasing Substring
+func LIStrTest() {
+	x := "31264597"
+
+	length, lis := subseqs.LIStr(x)
+
+	fmt.Print("LIS(substring), Length: ", length, "    LIS: ", lis)
+}

@@ -12,6 +12,8 @@ import (
 func SubseqTest() {
 	LCSeqTest()
 	LCStrTest()
+	LISeqTest()
+	LIStrTest()
 }
 
 // LCSeqTest tests Longest Common Subsequence
@@ -49,11 +51,20 @@ func LCStrTest() {
 	fmt.Println("    RE:", re, "    Test:", matchX && matchY)
 }
 
+// LISeqTest tests Longest Increasing Subsequence
+func LISeqTest() {
+	x := "31264597"
+
+	length, lis := subseqs.LISeq(x)
+
+	fmt.Println("LIS(subsequence), Length: ", length, "    LIS: ", lis)
+}
+
 // LIStrTest tests Longest Increasing Substring
 func LIStrTest() {
 	x := "31264597"
 
 	length, lis := subseqs.LIStr(x)
 
-	fmt.Print("LIS(substring), Length: ", length, "    LIS: ", lis)
+	fmt.Println("LIS(substring), Length: ", length, "    LIS: ", lis)
 }

@@ -89,8 +89,27 @@ func LISeq(x string) (int, string) {
 	if len(x) == 0 {
 		return 0, ""
 	}
-	length := 1
+	length := 0
 	lis := ""
+	var dp []int
+	// Length of LIS
+	for i := 0; i < len(x); i++ {
+		length = 0
+		for j := 0; j < i; j++ {
+			if x[i] > x[j] && dp[j] > length {
+				length = dp[j]
+			}
+		}
+		dp = append(dp, length+1)
+	}
+	length = dp[len(dp)-1]
+	// Subsequence of LIS
+	lis = string(x[len(x)-1])
+	for k := len(x) - 1; k > 0; k-- {
+		if x[k-1] < x[k] && dp[k-1] < dp[k] {
+			lis = string(x[k-1]) + lis
+		}
+	}
 	return length, lis
 }
 
@@ -115,10 +134,10 @@ func LIStr(x string) (int, string) {
 		}
 	}
 	// Substring of LIS
-	for i := 0; i < len(dp); i++ {
-		if dp[i] == length {
-			for j := length - 1; j >= 0; j-- {
-				lis += string(x[i-j])
+	for m := 0; m < len(dp); m++ {
+		if dp[m] == length {
+			for n := length - 1; n >= 0; n-- {
+				lis += string(x[m-n])
 			}
 			break
 		}

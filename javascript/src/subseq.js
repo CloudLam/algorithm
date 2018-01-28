@@ -4,7 +4,7 @@
  * Released under the MIT License.
  */
 
- /**
+/**
  * Longest Common Subsequence
  * 
  * @param x
@@ -45,7 +45,7 @@ function LCSeq (x, y) {
   return {len: dp[x.length][y.length], lcs: lcs};
 }
 
- /**
+/**
  * Longest Common Substring
  * 
  * @param x
@@ -70,7 +70,6 @@ function LCStr (x, y) {
           // Substring of LCS
           lcs = '';
           for (var k = len; k > 0; k--) {
-            console.log(y[j-k]);
             lcs += y[j-k];
           }
         }
@@ -82,7 +81,7 @@ function LCStr (x, y) {
   return {len: len, lcs: lcs};
 }
 
- /**
+/**
  * Longest Increasing Subsequence
  * 
  * @param x
@@ -92,12 +91,31 @@ function LISeq (x) {
   if (x.length == 0) {
     return {len: 0, lis: ''};
   }
-  var len = 1;
+  var len = 0;
   var lis = '';
+  var dp = new Array(x.length);
+  // Length of LIS
+  for (var i = 0; i < x.length; i++) {
+    len = 0;
+    for (var j = 0; j < i; j++) {
+      if (x[i] > x[j] && dp[j] > len) {
+        len = dp[j];
+      }
+    }
+    dp[i] = len + 1;
+  }
+  len = dp[x.length - 1];
+  // Subsequence of LIS
+  lis = '' + x[x.length - 1];
+  for (var k = x.length - 1; k > 0; k--) {
+    if (x[k-1] < x[k] && dp[k-1] < dp[k]) {
+      lis = x[k-1] + lis;
+    }
+  }
   return {len: len, lis: lis};
 }
 
- /**
+/**
  * Longest Increasing Substring
  * 
  * @param x
@@ -123,10 +141,10 @@ function LIStr (x) {
     }
   }
   // Substring of LIS
-  for (var i = 0; i < dp.length; i++) {
-    if (dp[i] == len) {
-      for (var j = len - 1; j >= 0; j--) {
-        lis += x[i-j];
+  for (var m = 0; m < dp.length; m++) {
+    if (dp[m] == len) {
+      for (var n = len - 1; n >= 0; n--) {
+        lis += x[m-n];
       }
       break;
     }

@@ -23,8 +23,11 @@ console.log(lcs_str);
 var re_str = new RegExp(lcs_str.lcs + '.*');
 console.log(re_str + ', ' + String(re_str.test(x) && re_str.test(z)));
 
-var lis_array = [3, 1, 2, 6, 4, 5, 10, 7];
-var lis_str = LIStr(lis_array);
+var lis_num = '31264597';
+var lis_str = LIStr(lis_num);
 console.log(lis_str);
+
+var lis_seq = LISeq(lis_num);
+console.log(lis_seq);
 </script>
 </html>

@@ -86,7 +86,12 @@ func LCStr(x, y string) (int, string) {
 
 // LISeq returns Longest Increasing Subsequence: length & 1 of LIS
 func LISeq(x string) (int, string) {
-	return 0, ""
+	if len(x) == 0 {
+		return 0, ""
+	}
+	length := 1
+	lis := ""
+	return length, lis
 }
 
 // LIStr returns Longest Increasing Substring: length & 1 of LIS

@@ -88,7 +88,14 @@ function LCStr (x, y) {
  * @param x
  * @return {len, lis}
  */
-function LISeq (x) {}
+function LISeq (x) {
+  if (x.length == 0) {
+    return {len: 0, lis: ''};
+  }
+  var len = 1;
+  var lis = '';
+  return {len: len, lis: lis};
+}
 
  /**
  * Longest Increasing Substring

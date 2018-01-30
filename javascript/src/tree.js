@@ -4,7 +4,10 @@
  * Released under the MIT License.
  */
 
-class Node {
+/*
+ * Binary-Search-Tree
+ */
+class BinarySearchNode {
   constructor (value, left, right) {
     this.value = value || null;
     this.left = left || null;
@@ -48,7 +51,7 @@ class BinarySearchTree {
     return this.getMin(node.left);
   }
   insert (value) {
-    let node = new Node(value);
+    let node = new BinarySearchNode(value);
     if (this.root === null) {
       this.root = node;
     } else {
@@ -151,3 +154,10 @@ class BinarySearchTree {
     }
   }
 }
+
+/*
+ * Binary-Plus-Tree
+ */
+class BinaryPlusNode {}
+
+class BinaryPlusTree {}

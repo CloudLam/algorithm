@@ -158,6 +158,15 @@ class BinarySearchTree {
 /*
  * Binary-Plus-Tree
  */
-class BinaryPlusNode {}
+class BinaryPlusNode {
+  constructor () {
+    this.entries = {};
+    this.prev = null;
+    this.next = null;
+    this.parent = null;
+    this.isRoot = null;
+    this.isLeaf = null;
+  }
+}
 
 class BinaryPlusTree {}

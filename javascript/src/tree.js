@@ -161,8 +161,11 @@ class BinarySearchTree {
 class BinaryPlusNode {
   constructor () {
     this.keys = [];
+    this.isRoot = false;
+    this.isLeaf = false;
+    this.parent = null;
+    this.children = [];
     this.next = null;
-    this.children = null;
   }
 }
 

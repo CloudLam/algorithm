@@ -156,12 +156,29 @@ class BinarySearchTree {
 }
 
 /*
- * Binary-Plus-Tree
+ * B-Tree
  */
-class BinaryPlusNode {
+class BNode {
   constructor () {
     this.keys = [];
-    this.isRoot = false;
+    this.parent = null;
+    this.children = [];
+  }
+}
+
+class BTree {
+  constructor () {
+    this.root = null;
+    this.order = 2;
+  }
+}
+
+/*
+ * B-Plus-Tree
+ */
+class BPlusNode {
+  constructor () {
+    this.keys = [];
     this.isLeaf = false;
     this.parent = null;
     this.children = [];
@@ -169,4 +186,9 @@ class BinaryPlusNode {
   }
 }
 
-class BinaryPlusTree {}
+class BPlusTree {
+  constructor () {
+    this.root = null;
+    this.order = 2;
+  }
+}

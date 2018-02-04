@@ -167,28 +167,32 @@ class BNode {
 }
 
 class BTree {
-  constructor () {
+  constructor (order) {
     this.root = null;
-    this.order = 2;
+    this.order = order > 2 ? order : 2;
   }
+  search (value) {}
+  insert (value) {}
+  remove (value) {}
 }
 
 /*
  * B-Plus-Tree
  */
-class BPlusNode {
+class BPlusNode extends BNode {
   constructor () {
-    this.keys = [];
+    super ();
     this.isLeaf = false;
-    this.parent = null;
-    this.children = [];
     this.next = null;
   }
 }
 
 class BPlusTree {
-  constructor () {
+  constructor (order) {
     this.root = null;
-    this.order = 2;
+    this.order = order > 2 ? order : 2;
   }
+  search (value) {}
+  insert (value) {}
+  remove (value) {}
 }

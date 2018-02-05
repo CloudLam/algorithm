@@ -174,6 +174,7 @@ class BTree {
   search (value) {}
   insert (value) {}
   remove (value) {}
+  print () {}
 }
 
 /*
@@ -195,4 +196,5 @@ class BPlusTree {
   search (value) {}
   insert (value) {}
   remove (value) {}
+  print () {}
 }

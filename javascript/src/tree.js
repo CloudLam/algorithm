@@ -159,17 +159,17 @@ class BinarySearchTree {
  * B-Tree
  */
 class BNode {
-  constructor () {
+  constructor (order) {
+    this.order = order;
     this.keys = [];
-    this.parent = null;
     this.children = [];
   }
 }
 
 class BTree {
   constructor (order) {
-    this.root = null;
     this.order = order > 2 ? order : 2;
+    this.root = new BNode(this.order);
   }
   search (value) {}
   insert (value) {}
@@ -190,8 +190,8 @@ class BPlusNode extends BNode {
 
 class BPlusTree {
   constructor (order) {
-    this.root = null;
     this.order = order > 2 ? order : 2;
+    this.root = new BPlusNode();
   }
   search (value) {}
   insert (value) {}

@@ -159,10 +159,71 @@ class BinarySearchTree {
  * B-Tree
  */
 class BNode {
-  constructor (order) {
-    this.order = order;
+  constructor () {
     this.keys = [];
+    this.parent = null;
     this.children = [];
+  }
+  compare (a, b) {
+    return a - b;
+  }
+  split (order) {
+    let temp = this.keys.splice(order / 2, 1);
+
+    let left = new BNode();
+    left.keys = this.keys.splice(0, order / 2);
+
+    let right = new BNode();
+    right.keys = this.keys;
+
+    if (this.children.length > 0) {
+      left.children = this.children.splice(0, order / 2 + 1);
+      right.children = this.children;
+    }
+
+    if (this.parent) {
+      if (temp[0] < this.parent.keys[0]) {
+        this.parent.keys.splice(0, 0, temp[0]);
+        this.parent.children.splice(0, 1, right);
+        this.parent.children.splice(0, 0, left);
+      } else {
+        this.parent.keys.push(temp[0]);
+        this.parent.children.pop();
+        this.parent.children.push(left);
+        this.parent.children.push(right);
+      }
+      left.parent = this.parent;
+      right.parent = this.parent;
+      if (this.parent.keys.length >= order) {
+        this.parent.split(order);
+      }
+    } else {
+      this.keys = temp;
+      this.children = [];
+      this.children.push(left);
+      this.children.push(right);
+      left.parent = this;
+      right.parent = this;
+    }
+  }
+  insert (value, order) {
+    if (this.children.length == 0) {
+      this.keys.push(value);
+      this.keys.sort(this.compare);
+      if (this.keys.length < order) {
+        return;
+      } else {
+        this.split(order);
+      }
+    } else {
+      for (let i = 0; i < this.keys.length; i++) {
+        if (value < this.keys[i]) {
+          this.children[i].insert(value, order);
+          return;
+        }
+      }
+      this.children[this.keys.length].insert(value, order);
+    }
   }
 }
 
@@ -172,7 +233,9 @@ class BTree {
     this.root = new BNode(this.order);
   }
   search (value) {}
-  insert (value) {}
+  insert (value) {
+    this.root.insert(value, this.order);
+  }
   remove (value) {}
   print () {}
 }

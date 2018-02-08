@@ -225,6 +225,7 @@ class BNode {
       this.children[this.keys.length].insert(value, order);
     }
   }
+  remove (value, order) {}
 }
 
 class BTree {

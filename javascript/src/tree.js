@@ -225,20 +225,32 @@ class BNode {
       this.children[this.keys.length].insert(value, order);
     }
   }
-  remove (value, order) {}
+  remove (value, order) {
+    for (let i = 0; i < this.keys.length; i++) {
+      if (value == this.keys[i]) {
+        return;
+      }
+      if (value < this.keys[i]) {
+        this.children[i].remove(value, order);
+        return;
+      }
+    }
+    this.children[this.keys.length].remove(value, order);
+  }
 }
 
 class BTree {
   constructor (order) {
     this.order = order > 2 ? order : 2;
-    this.root = new BNode(this.order);
+    this.root = new BNode();
   }
   search (value) {}
   insert (value) {
     this.root.insert(value, this.order);
   }
-  remove (value) {}
-  print () {}
+  remove (value) {
+    this.root.remove(value, this.order);
+  }
 }
 
 /*
@@ -260,5 +272,4 @@ class BPlusTree {
   search (value) {}
   insert (value) {}
   remove (value) {}
-  print () {}
 }

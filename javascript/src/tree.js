@@ -178,7 +178,13 @@ class BNode {
 
     if (this.children.length > 0) {
       left.children = this.children.splice(0, order / 2 + 1);
+      left.children.forEach(element => {
+        element.parent = left;
+      });
       right.children = this.children;
+      right.children.forEach(element => {
+        element.parent = right;
+      });
     }
 
     if (this.parent) {

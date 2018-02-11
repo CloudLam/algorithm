@@ -250,7 +250,23 @@ class BTree {
     this.order = order > 2 ? order : 2;
     this.root = new BNode();
   }
-  search (value) {}
+  search (value) {
+    return searchKey(this.root, value);
+    function searchKey (node, value) {
+      for (let i = 0; i < node.keys.length; i++) {
+        if (value == node.keys[i]) {
+          return {node: node, index: i};
+        }
+        if (value < node.keys[i] && node.children) {
+          return searchKey(node.children[i], value);
+        }
+      }
+      if (node.children) {
+        return searchKey(node.children[node.keys.length], value);
+      }
+      return {node: null, index: -1};
+    }
+  }
   insert (value) {
     this.root.insert(value, this.order);
   }

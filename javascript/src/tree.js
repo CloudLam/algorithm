@@ -257,6 +257,16 @@ class BTree {
   remove (value) {
     this.root.remove(value, this.order);
   }
+  print () {
+    printKeys(this.root);
+    function printKeys (node) {
+      let parent = node.parent || {keys: 'root'};
+      console.log('Node (' + parent.keys + '): ' + node.keys);
+      node.children.forEach(element => {
+        printKeys(element);
+      });
+    }
+  }
 }
 
 /*

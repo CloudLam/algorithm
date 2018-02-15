@@ -13,5 +13,7 @@ set GOPATH=%~dp0
 gofmt -w src
 go install test
 
-:end
 echo finished
+
+:end
+echo > nul
